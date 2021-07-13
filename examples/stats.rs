@@ -8,14 +8,24 @@ fn test_n_words<const B: usize>(words: usize) {
     let mut dict = vec![BitArray::<B>::zeros(); words];
     hamming_dict::generate_dict_from(&mut dict);
 
+    for word in dict.iter().map(|word| **word) {
+        for byte in word {
+            eprint!("{:X}", byte);
+        }
+        eprint!(",");
+    }
+    eprintln!();
     eprintln!(
-        "each word average distance from all other words: {:?}",
+        "each word closest distance from all other words: {:?}",
         dict.iter()
-            .map(|word| dict
+            .enumerate()
+            .map(|(ix, word)| dict
                 .iter()
-                .map(|other_word| other_word.distance(word))
-                .sum::<u32>() as f64
-                / (dict.len() - 1) as f64)
+                .enumerate()
+                .filter(|&(other_ix, _)| ix != other_ix)
+                .map(|(_, other_word)| other_word.distance(word))
+                .min()
+                .unwrap())
             .collect::<Vec<_>>()
     );
 }
