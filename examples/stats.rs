@@ -6,11 +6,11 @@ use bitarray::BitArray;
 fn test_n_words<const B: usize>(words: usize) {
     eprintln!("running with {} bytes and {} words", B, words);
     let mut dict = vec![BitArray::<B>::zeros(); words];
-    hamming_dict::generate_dict_from(&mut dict);
+    hamming_dict::generate_dict_rand(&mut dict);
 
-    for word in dict.iter().map(|word| **word) {
-        for byte in word {
-            eprint!("{:X}", byte);
+    for word in dict.iter().map(|word| &**word) {
+        for &byte in word {
+            eprint!("{:02X}", byte);
         }
         eprint!(",");
     }
@@ -31,7 +31,7 @@ fn test_n_words<const B: usize>(words: usize) {
 }
 
 fn main() {
-    for p in 3..=10 {
+    for p in 1..=8 {
         test_n_words::<64>(1 << p);
     }
 }
