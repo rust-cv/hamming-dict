@@ -25,7 +25,7 @@ pub fn generate_dict<const B: usize>(words: usize) -> Vec<BitArray<B>> {
 /// This is deterministic, and thus will always produce the same dictionary given the same
 /// input slice of [`BitArray`] (`dict`).
 pub fn generate_dict_from<const B: usize>(dict: &mut [BitArray<B>]) {
-    let mut changed = false;
+    let mut changed = true;
     while changed {
         changed = false;
         for ix in 0..dict.len() {
