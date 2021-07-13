@@ -12,6 +12,7 @@ categories = ["no-std", "computer-vision"]
 readme = "README.md"
 
 [features]
+default = ["alloc"]
 alloc = []
 
 [dependencies]
