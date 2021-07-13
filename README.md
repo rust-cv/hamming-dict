@@ -19,4 +19,4 @@
 [bll]: https://github.com/rust-cv/hamming-dict/workflows/lints/badge.svg
 [bnl]: https://github.com/rust-cv/hamming-dict/workflows/no-std/badge.svg
 
-A hamming-space codeword generator for hamming space BoW algorithms
+Generates codeword dictionaries for hamming-space BoW algorithms

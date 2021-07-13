@@ -2,6 +2,14 @@
 name = "hamming-dict"
 version = "0.1.0"
 edition = "2018"
+authors = ["Geordon Worley <vadixidav@gmail.com>"]
+license = "MIT"
+description = "Generates codeword dictionaries for hamming-space BoW algorithms"
+repository = "https://github.com/rust-cv/hamming-dict"
+documentation = "https://docs.rs/hamming-dict/"
+keywords = ["bow", "dictionary", "codeword", "hamming"]
+categories = ["no-std", "computer-vision"]
+readme = "README.md"
 
 [features]
 alloc = []
