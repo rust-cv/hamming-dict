@@ -22,6 +22,19 @@ pub fn generate_dict<const B: usize>(words: usize) -> Vec<BitArray<B>> {
     dict
 }
 
+/// Generate a dictionary with a specific number of `words` as [`BitArray`] with `B` bytes.
+///
+/// This is deterministic, and thus will always produce the same dictionary given the same
+/// `B`, `words`, and `seed` parameters.
+///
+/// Returns the codewords in the dictionary as a [`Vec`].
+#[cfg(feature = "alloc")]
+pub fn generate_dict_seed<const B: usize>(words: usize, seed: u64) -> Vec<BitArray<B>> {
+    let mut dict = vec![BitArray::zeros(); words];
+    generate_dict_rand_seed(&mut dict, seed);
+    dict
+}
+
 /// Generate a dictionary by mutating a slice of [`BitArray`].
 ///
 /// This is deterministic, and thus will always produce the same dictionary given the same
