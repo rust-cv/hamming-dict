@@ -55,7 +55,17 @@ pub fn generate_dict_from<const B: usize>(dict: &mut [BitArray<B>]) {
 ///
 /// Internally this uses [`Xoshiro256PlusPlus`], calling [`SeedableRng::seed_from_u64`] with `0` as seed.
 pub fn generate_dict_rand<const B: usize>(dict: &mut [BitArray<B>]) {
-    let mut rng = Xoshiro256PlusPlus::seed_from_u64(0);
+    generate_dict_rand_seed(dict, 0);
+}
+
+/// Generate a deterministic dictionary by mutating a slice of [`BitArray`].
+///
+/// The actual values of the input slice are ignored, as they are replaced with random values.
+/// This is deterministic based on the number of words in the dictionary (length of `dict`) only.
+///
+/// Internally this uses [`Xoshiro256PlusPlus`], calling [`SeedableRng::seed_from_u64`] with `seed` as seed.
+pub fn generate_dict_rand_seed<const B: usize>(dict: &mut [BitArray<B>], seed: u64) {
+    let mut rng = Xoshiro256PlusPlus::seed_from_u64(seed);
     for word in &mut *dict {
         for byte in &mut **word {
             *byte = rng.gen();
