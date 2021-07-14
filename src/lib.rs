@@ -35,7 +35,7 @@ pub fn generate_dict_from<const B: usize>(dict: &mut [BitArray<B>]) {
     match dict.len() {
         0 => return,
         1 => return,
-        2 => {
+        2..=64 => {
             generate_dict_stage_2(dict);
             return;
         }
