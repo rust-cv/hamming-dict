@@ -16,6 +16,6 @@ default = ["alloc"]
 alloc = []
 
 [dependencies]
-bitarray = { version = "0.9.1", default-features = false }
+bitarray = { version = "0.10.0", default-features = false }
 rand = { version = "0.8.4", default-features = false }
 rand_xoshiro = { version = "0.6.0", default-features = false }
